@@ -1,0 +1,39 @@
+//
+//  PrefixHeader.pch
+//  WKWebview
+//
+//  Created by ZSW on 2020/3/12.
+//  Copyright © 2020 ZSW. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+//竖屏幕宽高
+#define kScreenWidth ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+//判断是否iPad
+#define kIS_IPAD ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+//iPhone X适配
+#define kIS_IPHONE_X ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125,2436), [[UIScreen mainScreen] currentMode].size) && !kIS_IPAD : NO)
+//iPhone Xs适配
+#define kIS_IPHONE_X_S ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125,2436), [[UIScreen mainScreen] currentMode].size) && !kIS_IPAD : NO)
+//iPhone Xr适配
+#define kIS_IPHONE_X_R ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828,1792), [[UIScreen mainScreen] currentMode].size) && !kIS_IPAD : NO)
+//iPhone Xs Max适配
+#define kIS_IPHONE_X_S_MAX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242,2688), [[UIScreen mainScreen] currentMode].size) && !kIS_IPAD : NO)
+
+//iPhoneX系列适配都一样，故写一个统一的
+#define kIS_IPHONE__X__ ((kIS_IPHONE_X || kIS_IPHONE_X_S || kIS_IPHONE_X_R || kIS_IPHONE_X_S_MAX) ? YES:NO)
+
+//导航栏
+#define StatusBarHeight (kIS_IPHONE__X__ ? 44.f : 20.f)
+#define kNavBar_Height (kIS_IPHONE__X__ ? 88.f : 64.f)
+#define TabbarHeight (kIS_IPHONE__X__ ? (49.f + 34.f) : (49.f))
+#define kBOTTOM_SAFE_AREA (kIS_IPHONE__X__ ? (34.f) : (0.f))
+
+#endif /* PrefixHeader_pch */
